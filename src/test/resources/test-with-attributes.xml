@@ -1,0 +1,18 @@
+<cas:serviceResponse xmlns:cas='https://ecas.ec.europa.eu/cas/schemas'>
+	<cas:authenticationSuccess>
+		<cas:user>test</cas:user>
+		<!-- Begin Ldap Attributes -->
+		<cas:attributes>			
+			
+				<cas:mail>test.test@test.test</cas:mail>
+			
+				<cas:sn>tets</cas:sn>
+			
+				<cas:cn>test</cas:cn>
+						
+		</cas:attributes>
+		<!-- End Ldap Attributes -->
+
+
+	</cas:authenticationSuccess>
+</cas:serviceResponse>

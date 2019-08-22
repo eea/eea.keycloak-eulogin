@@ -1,0 +1,5 @@
+<cas:serviceResponse xmlns:cas='https://ecas.ec.europa.eu/cas/schemas'>
+	<cas:authenticationSuccess>
+		<cas:user>test</cas:user>
+	</cas:authenticationSuccess>
+</cas:serviceResponse>
