@@ -1,1 +1,1 @@
-io.github.johnjcool.keycloak.broker.cas.CasIdentityProviderFactory
+org.eea.keycloak.broker.cas.CasIdentityProviderFactory

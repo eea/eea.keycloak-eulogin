@@ -1,5 +1,4 @@
-FROM jboss/keycloak:4.8.3.Final
-MAINTAINER John J Cool <john.j.cool@gmail.com>
+FROM jboss/keycloak:5.0.0.Final
 
 ARG project_version=1.0.0
 

@@ -1,2 +1,2 @@
-io.github.johnjcool.keycloak.broker.cas.mappers.UserAttributeMapper
-io.github.johnjcool.keycloak.broker.cas.mappers.AttributeToRoleMapper
+org.eea.keycloak.broker.cas.mappers.UserAttributeMapper
+org.eea.keycloak.broker.cas.mappers.AttributeToRoleMapper
