@@ -9,8 +9,6 @@ public class CasIdentityProviderConfig extends IdentityProviderModel {
 
 	private static final String DEFAULT_CAS_LOGIN_SUFFFIX = "login";
 	private static final String DEFAULT_CAS_LOGOUT_SUFFFIX = "logout";
-	//private static final String DEFAULT_CAS_SERVICE_VALIDATE_SUFFFIX = "serviceValidate";
-	//private static final String DEFAULT_CAS_SERVICE_VALIDATE_SUFFFIX = "laxValidate";
 
 	public CasIdentityProviderConfig(final IdentityProviderModel model) {
 		super(model);
@@ -29,8 +27,6 @@ public class CasIdentityProviderConfig extends IdentityProviderModel {
 	}
 
 	public String getCasServiceValidateUrl() {
-		//return String.format("%s/%s", getConfig().get("casServerUrlPrefix"), DEFAULT_CAS_SERVICE_VALIDATE_SUFFFIX);
-		logger.error("endpoint bonico -->{}"+String.format("%s/%s", getConfig().get("casServerUrlPrefix"), getConfig().get("casValidationEndpoint")));
 		return String.format("%s/%s", getConfig().get("casServerUrlPrefix"), getConfig().get("casValidationEndpoint"));
 	}
 
