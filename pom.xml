@@ -2,11 +2,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>io.github.johnjcool</groupId>
-	<artifactId>keycloak-cas-services</artifactId>
-	<version>5.0.0</version>
-	<name>Keycloak CAS Services</name>
-	<description>Extend Keycloack with CAS IDP.</description>
+	<groupId>org.eea.keycloak</groupId>
+	<artifactId>keycloak-cas-services-eulogin</artifactId>
+	<version>3.0.0-SNAPSHOT</version>
+	<name>Keycloak CAS Services for EULogin</name>
+	<description>Extend Keycloack with CAS IDP for EU Login</description>
 
 	<licenses>
 		<license>
