@@ -36,16 +36,16 @@ pipeline {
             }
         }
 
-        // stage('Build Docker Images') {
-        //     steps {
-        //         script {
-        //             echo 'Dataflow Service'
-        //             def app
-        //             app = docker.build("k8s-swi001:5000/dataflow-service:1.0", "--build-arg JAR_FILE=target/dataflow-service-1.0-SNAPSHOT.jar --build-arg MS_PORT=8020 .")
-        //             app.push()                    
-        //         }    
-        //     }
-        // }
+        stage('Build Docker Images') {
+            steps {
+                script {
+                    echo 'Keycloak with EULogin Plugin'
+                    def app
+                    app = docker.build("k8s-swi001:5000/keycloak-eulogin:3.0", "--build-arg project_version=3.0.0-SNAPSHOT.jar .")
+                    app.push()                    
+                }    
+            }
+        }
         
         
     }
