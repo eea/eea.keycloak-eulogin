@@ -41,7 +41,7 @@ pipeline {
                 script {
                     echo 'Keycloak with EULogin Plugin'
                     def app
-                    app = docker.build("k8s-swi001:5000/keycloak-eulogin:3.0", "--build-arg project_version=3.0.0-SNAPSHOT ./target")
+                    app = docker.build("k8s-swi001:5000/keycloak-eulogin:3.0", "--build-arg project_version=3.0.0-SNAPSHOT .")
                     app.push()                    
                 }    
             }
