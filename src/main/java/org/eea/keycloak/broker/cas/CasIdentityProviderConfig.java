@@ -10,6 +10,8 @@ public class CasIdentityProviderConfig extends IdentityProviderModel {
 	private static final String DEFAULT_CAS_LOGIN_SUFFFIX = "login";
 	private static final String DEFAULT_CAS_LOGOUT_SUFFFIX = "logout";
 
+	private boolean trustAllCertificates;
+
 	public CasIdentityProviderConfig(final IdentityProviderModel model) {
 		super(model);
 	}
@@ -52,4 +54,10 @@ public class CasIdentityProviderConfig extends IdentityProviderModel {
 	public void setRenew(final boolean renew) {
 		getConfig().put("renew", String.valueOf(renew));
 	}
+
+	public String getTrustAllCertificates(){return getConfig().get("trustAllCertificates");}
+
+	public Boolean isTrustAllCertificates(){return Boolean.valueOf(getConfig().get("trustAllCertificates"));}
+
+	public void setTrustAllCertificates(final Boolean trustAllCertificates){getConfig().put("trustAllCertificates",String.valueOf(trustAllCertificates));}
 }
