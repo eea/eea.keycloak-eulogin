@@ -1,5 +1,18 @@
 package org.eea.keycloak.broker.cas;
 
+import java.security.GeneralSecurityException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import org.apache.http.HttpHost;
+import org.apache.http.conn.scheme.PlainSocketFactory;
+import org.apache.http.conn.scheme.Scheme;
+import org.apache.http.conn.scheme.SchemeRegistry;
+import org.apache.http.conn.ssl.SSLSocketFactory;
+import org.apache.http.conn.ssl.TrustStrategy;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.eea.keycloak.broker.cas.model.ServiceResponse;
 import org.eea.keycloak.broker.cas.model.Success;
 
@@ -20,6 +33,7 @@ import javax.ws.rs.core.UriInfo;
 import org.eea.keycloak.broker.cas.util.UrlHelper;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.jboss.resteasy.client.jaxrs.engines.ApacheHttpClient4Engine;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.keycloak.broker.provider.AbstractIdentityProvider;
 import org.keycloak.broker.provider.AuthenticationRequest;
@@ -48,9 +62,38 @@ public class CasIdentityProvider extends AbstractIdentityProvider<CasIdentityPro
 
 	public CasIdentityProvider(final KeycloakSession session, final CasIdentityProviderConfig config) {
 		super(session, config);
-		client = ResteasyClientBuilder.newClient(ResteasyProviderFactory.getInstance());
+		//client = ResteasyClientBuilder.newClient(ResteasyProviderFactory.getInstance());
+    ApacheHttpClient4Engine engine = null;
+    try {
+      engine = new ApacheHttpClient4Engine(createAllTrustingClient());
+    } catch (GeneralSecurityException e) {
+      e.printStackTrace();
+    }
+    client = new ResteasyClientBuilder().httpEngine(engine).build();
 	}
+  private DefaultHttpClient createAllTrustingClient() throws GeneralSecurityException {
+    SchemeRegistry registry = new SchemeRegistry();
+    registry.register(new Scheme("http", 80, PlainSocketFactory.getSocketFactory()));
 
+    TrustStrategy trustStrategy = new TrustStrategy() {
+      public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+        return true;
+      }
+    };
+    SSLSocketFactory factory = new SSLSocketFactory(trustStrategy, SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER );
+    registry.register(new Scheme("https", 443, factory));
+
+    ThreadSafeClientConnManager mgr = new ThreadSafeClientConnManager(registry);
+
+    mgr.setMaxTotal(1000);
+    mgr.setDefaultMaxPerRoute(1000);
+
+    DefaultHttpClient client = new DefaultHttpClient(mgr, new DefaultHttpClient().getParams());
+		HttpClientBuilder.create().build();
+	//	HttpHost proxy=new HttpHost("",1,"");
+	//	CloseableHttpClient httpClient = HttpClientBuilder.create().setProxy(proxy).build();
+    return client;
+  }
 	@Override
 	public Response performLogin(final AuthenticationRequest request) {
 		try {
