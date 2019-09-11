@@ -117,21 +117,21 @@
 		    <div class="form-group">
 		        <label class="col-md-2 control-label" for="gateway">{{:: 'cas-gateway' | translate}}</label>
 		        <div class="col-md-6">
-		            <input ng-model="identityProvider.config.gateway" name="identityProvider.config.gateway" id="gateway" onoffswitch on-text="{{:: 'onText' | translate}}" off-text="{{:: 'offText' | translate}}" />
+		            <input ng-model="identityProvider.config.gateway" name="identityProvider.config.gateway" id="gateway"  />
 		        </div>
 		        <kc-tooltip>{{:: 'cas-gateway.tooltip' | translate}}</kc-tooltip>
 		    </div>
 		    <div class="form-group">
 		        <label class="col-md-2 control-label" for="renew">{{:: 'cas-renew' | translate}}</label>
 		        <div class="col-md-6">
-		            <input ng-model="identityProvider.config.renew" name="identityProvider.config.renew" id="renew" onoffswitch on-text="{{:: 'onText' | translate}}" off-text="{{:: 'offText' | translate}}" />
+		            <input ng-model="identityProvider.config.renew" name="identityProvider.config.renew" id="renew"  />
 		        </div>
 		        <kc-tooltip>{{:: 'cas-renew.tooltip' | translate}}</kc-tooltip>
 		    </div>
             <div class="form-group">
                 <label class="col-md-2 control-label" for="trustAllCertificates">{{:: 'cas-trust-all-certificates' | translate}}</label>
                 <div class="col-md-6">
-                    <input ng-model="identityProvider.config.trustAllCertificates" name="identityProvider.config.trustAllCertificates" id="trustAllCertificates" onoffswitch on-text="{{:: 'onText' | translate}}" off-text="{{:: 'offText' | translate}}" />
+                    <input ng-model="identityProvider.config.trustAllCertificates" name="identityProvider.config.trustAllCertificates" id="trustAllCertificates"  />
                 </div>
                 <kc-tooltip>{{:: 'cas-trust-all-certificates.tooltip' | translate}}</kc-tooltip>
             </div>
